@@ -3,7 +3,7 @@
 ## Goal of Repository
 * Clean and organize the Hartwig data request files into a single dataframe. 
 
-[Overview] (overview.pdf)
+[Overview](overview.pdf)
 
 ## Organization
 * For each file type, a pipeline computes and organizes features across all samples. 
