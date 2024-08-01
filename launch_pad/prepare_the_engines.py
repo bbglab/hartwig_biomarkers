@@ -9,7 +9,7 @@ engine_map = {
    
     '2_get-somatic/get-somatic.ipynb': 'engine2',
     '3_get-isofox/0_get-isofox.ipynb': 'engine2',
-    '3_get-isofox/get-neoepitope.ipynb': 'engine2',
+    '3_get-isofox/3_get-neoepitope.ipynb': 'engine2',
     '4_get-cnv/get-cnv-overall.ipynb': 'engine2',
     '4_get-cnv/get-cnv-genes.ipynb': 'engine2',
     '5_get-HLA/get-hla.ipynb': 'engine2',
@@ -20,13 +20,13 @@ engine_map = {
 
     '0_get-clinical/1_get-clinical.ipynb': 'engine3',   
     '3_get-isofox/1_get-cibersort.ipynb': 'engine3',
-    '3_get-isofox/1_get-isofox.ipynb': 'engine3', 
+    '3_get-isofox/2_get-isofox.ipynb': 'engine3', 
     '5_get-HLA/get-lilac.ipynb': 'engine3',
     '7_get-sigs/1_get-sigs.ipynb': 'engine3',
     '8_get-summary/1_get-summary.ipynb': 'engine3',
     '9_get-drivers/1_get-drivers.ipynb': 'engine3',
     
-    'after_burn/combine.ipynb': 'engine4'
+    'last_step/combine.ipynb': 'engine4'
 }
 for i in engine_map:
     cmd = 'jupyter nbconvert --to script ' + CODE_DIR + i + ' --output ' + CODE_DIR + 'launch_pad/' + engine_map[i] + "/" + i.split("/")[-1].split(".ipynb")[0]
