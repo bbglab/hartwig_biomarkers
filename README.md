@@ -3,7 +3,7 @@
 ## Goal of Repository
 * Clean and organize the Hartwig data request files into a single dataframe. 
 
-[Overview](overview.pdf)
+(overview.pdf)
 
 ## Organization
 * For each molecular file type, a pipeline computes features across all samples. 
@@ -13,7 +13,8 @@
 ## Prerequisites to Run
 
 ### Approvals
-* Need approval to use Hartwig data: https://www.hartwigmedicalfoundation.nl/en/data/data-access-request/ 
+* Need approval to use Hartwig data:
+*- See: https://www.hartwigmedicalfoundation.nl/en/data/data-access-request/ 
 * Need the Harwig database PURPLE, ISOFOX, and clinical data output. 
 
 ### Source and reference data 
