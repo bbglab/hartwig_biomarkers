@@ -1,0 +1,11 @@
+##[pre]
+. "/home/$USER/anaconda3/etc/profile.d/conda.sh"
+conda activate base
+
+[params]
+cores = 1
+memory = 16G
+
+[jobs]
+python $PWD/engine1/0_get-clinical.py  
+python $PWD/engine1/create-file-index.py 

@@ -1,0 +1,11 @@
+[pre]
+. "/home/$USER/anaconda3/etc/profile.d/conda.sh"
+conda activate r_env
+
+[params]
+cores = 4
+memory = 32G
+
+[jobs]
+Rscript $PWD/engine3/1_get-cibersort.r "AdjTPM" "LM22.txt"
+Rscript $PWD/engine3/1_get-cibersort.r "AdjTPM" "TR4.txt"
