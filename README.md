@@ -1,9 +1,8 @@
-# hartwig_biomarkers
+# Hartwig Biomarkers
 
 ## Goal of Repository
-* Clean and organize the Hartwig data request files into a single dataframe. 
-
 [Overview](overview.pdf)
+* Clean and organize the Hartwig data request files into a single dataframe. 
 
 ## Organization
 * For each file type, a pipeline computes and organizes features across all samples. 
@@ -11,12 +10,12 @@
 
 ## Prerequisites to Run
 
-### Approvals
-* Need approval to use Hartwig data: https://www.hartwigmedicalfoundation.nl/en/data/data-access-request/ 
-* Need the Harwig database PURPLE, ISOFOX, and clinical data output. 
+### Hartwig Data Request Approval
+* Harwtig data request: https://www.hartwigmedicalfoundation.nl/en/data/data-access-request/ 
+* PURPLE, ISOFOX, and clinical data output. 
 
 ### Source and reference data 
-* Run and tested only on Hartwig data request files shared on August 9, 2022.
+* Run and tested on Hartwig data request files shared on August 9, 2022.
 * Source file locations need to be specified correctly in mission_control/treasure_map(.py,.R).
 
 ### QMap and conda environments
@@ -27,5 +26,4 @@
 * From the root directory:
 ```
 $ python run.py
-
 ```
