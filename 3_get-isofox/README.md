@@ -10,8 +10,7 @@
 * Input: Neoepitope input files (collected from 1_create-file-index)
 * Output: Dataframe with sampleIds on each row and a predicted neoepitope column.
 
-
 ## cibersort
 * Purpose: Compute cell-type prevalence using cibersort tool.  
-* Input: Output from 3_get-isofox/isofox pipeline.
-* Output: Dataframe with sampleIds on each row and cell-type prevalence in columns.
+* Input: Output from 1_get-isofox/isofox pipeline.
+* Output: Dataframe with sampleIds on each row and estimated cell-type prevalence in columns.

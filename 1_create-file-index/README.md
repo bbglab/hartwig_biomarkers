@@ -1,11 +1,11 @@
-# 1_create-file-index
+## 1_create-file-index
 
-#### Purpose 
+### Purpose 
 * Create organized storage for file path names in Hartwig.
 * File paths are fed as inputs to subsequent pipelines. 
 
-#### Input
+### Input
 * Clinical sampleIds for the clinical data set. 
 
-#### Output 
-* Separate text files containing lists of file paths across sampleIds; for somatic, cnv, cnv_gene, purity, neoepitope, driver, linx, sv, and isofox data. 
+### Output 
+* Lists of file paths across samples for somatic, cnv, cnv_gene, purity, neoepitope, driver, linx, sv, and isofox data. 
