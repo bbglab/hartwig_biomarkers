@@ -3,7 +3,7 @@
 ## Goal of Repository
 * Clean and organize the Hartwig data request files into a single dataframe. 
 
-![Overview](overview.pdf)
+[Overview](overview.pdf)
 
 ## Organization
 * For each molecular file type, a pipeline computes features across all samples. 
@@ -13,18 +13,16 @@
 ## Prerequisites to Run
 
 ### Approvals
-* Need approval to use the Hartwig database: https://www.hartwigmedicalfoundation.nl/en/data/data-access-request/ 
-* Need the output from PURPLE, Isofox, and clinical data files stored on cluster. 
+* Need approval to use Hartwig data: https://www.hartwigmedicalfoundation.nl/en/data/data-access-request/ 
+* Need the Harwig database PURPLE, ISOFOX, and clinical data output. 
 
 ### Source and reference data 
-* Source data is Hartwig data request files shared on August 9, 2022 (possible issues with other versions of the data request)
+* Run and tested on Hartwig data request files shared on August 9, 2022.
 * Source file locations need to be specified in mission_control/treasure_map(.py,.R).
 
-### Conda environments
-* Stored in to conda_env folder
-
-### QMap tool
-* Use the QMap tool from bbglab to run jobs: https://github.com/bbglab/qmap
+### QMap and conda environments
+* Jobs are submitted with the QMap tool from the bbglab: https://github.com/bbglab/qmap
+* QMap tool calls two conda environments, stored in conda_env folder.
 
 ## Run the pipeline
 * From the root directory:
