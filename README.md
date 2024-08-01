@@ -1,7 +1,7 @@
 # hartwig_biomarkers
 
-## Goal
-* Clean and organize the Hartwig data request files into a single dataframe for statistical analyses. 
+## Goal of Repository
+* Clean and organize the Hartwig data request files into a single dataframe. 
 
 ![Overview](overview.pdf)
 
@@ -10,23 +10,25 @@
 * Output from each pipeline are then joined by their sample ids.
 * Helper files to compute features for each molecular file type (*helper*) are located in mission_control folder.  
 
-## Prerequisites
+## Prerequisites to Run
 
-#### Source data
-* Source data is Hartwig data request files shared on August 9, 2022. 
-** Use output from PURPLE, Isofox, and clinical data files.
-* Source file locations are specified in mission_control/treasure_map(.py,.R).
-* The code makes use of reference files stored here: /workspace/datasets/hartwig/20211021/biomarkers/ref/
+### Approvals
+* Need approval to use the Hartwig database: https://www.hartwigmedicalfoundation.nl/en/data/data-access-request/ 
+* Need the output from PURPLE, Isofox, and clinical data files stored on cluster. 
 
-#### Conda Environments
+### Source and reference data 
+* Source data is Hartwig data request files shared on August 9, 2022 (possible issues with other versions of the data request)
+* Source file locations need to be specified in mission_control/treasure_map(.py,.R).
 
-I use 2 conda environments when running the code. 
+### Conda environments
+* Stored in to conda_env folder
 
-* An python environment to run the scripts store in ~/launch_pad/(engine1)(engine2)
-* An R environment to run the scripts store in ~/launch_pad/(engine3)(engine4)
+### QMap tool
+* Use the QMap tool from bbglab to run jobs: https://github.com/bbglab/qmap
 
 ## Run the pipeline
 * From the root directory:
 ```
 $ python run.py
+
 ```
