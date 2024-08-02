@@ -8,6 +8,8 @@ library(data.table)
 
 args <- list("AdjTPM")
 
+REF_DIR
+
 cpi1000_sets <- readRDS(paste0(REF_DIR,"cpi1000_gene_sets.Rds"))
 mariathan_sets <- readRDS(paste0(REF_DIR,"human_gene_signatures.Rds"))
 tgfb_sets <- readRDS(paste0(REF_DIR,"battle_gene_sets.Rds"))
@@ -36,8 +38,6 @@ names(go_sets) <- unlist(lapply(names(go_sets), function(i) paste0("gene_set_", 
 gene_sets <- c(cpi1000_sets, mariathan_sets, tgfb_sets, vhio_sets, kegg_sets, hallmark_sets, go_sets, cluster_sets)
 
 names(gene_sets) <- paste0("isofox_", names(gene_sets))
-
-gene_sets[['gene_set_tgfb_cluster']]
 
 appender <- function(ll) unlist(lapply( ll, function(i) gsub("-",".",paste0("isofox_", i))))
 for (i in names(gene_sets)) gene_sets[[i]] <- appender(gene_sets[[i]])

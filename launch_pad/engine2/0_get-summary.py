@@ -16,7 +16,7 @@ import pandas as pd
 import pickle 
 
 
-# #### 0 - Get file paths 
+# ### 0 - Get file paths 
 
 # In[9]:
 
@@ -25,7 +25,7 @@ with open( FPS_DIR + "purity_files.txt", "rb") as fp:
     purity_files = pickle.load(fp) 
 
 
-# #### 1 - Run it
+# ### 1 - Run it
 
 # In[12]:
 
@@ -36,7 +36,7 @@ for fp in purity_files:
     features.append(get_summary_features(fp))    
 
 
-# #### 2 - Output
+# ### 2 - Output
 
 # In[13]:
 

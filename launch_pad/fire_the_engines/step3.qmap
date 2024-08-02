@@ -5,6 +5,7 @@ conda activate r_env
 [params]
 cores = 4
 memory = 32G
+extra = -p normal
 
 [jobs]
 Rscript $PWD/engine3/1_get-clinical.r

@@ -15,9 +15,9 @@ import pandas as pd
 import pickle
 
 
-# #### 0 - get samples
+# ### 0 - get samples
 
-# In[7]:
+# In[2]:
 
 
 somatic_dir = I_DIR + "somatic/"
@@ -27,13 +27,10 @@ samples = pd.read_csv(TMP_DIR + "clinical_short.csv")['sampleId'].tolist()
 somatic_samples = [i for i in os.listdir(somatic_dir) if i in samples]
 isofox_samples = [i for i in os.listdir(ISOFOX_DIR) if i in samples]
 
-#isofox_dir =  I_DIR + "data_isofox/"
-#isofox_samples = [i for i in os.listdir(isofox_dir) if i in samples]
 
+# ### 1 - collect file paths
 
-# #### 1 - collect file paths
-
-# In[4]:
+# In[3]:
 
 
 somatic_files = []
@@ -59,13 +56,7 @@ for sample in somatic_samples:
         print('Missing path! ' + fp_start)      
 
 
-# In[6]:
-
-
-#len(somatic_files)
-
-
-# In[8]:
+# In[4]:
 
 
 isofox_files = []
@@ -77,9 +68,9 @@ for sample in isofox_samples:
         print('Missing path! ' + isofox_dir + sample  + "/" + sample + ".isf.gene_data.csv") 
 
 
-# #### 2 - output files
+# ### 2 - output files
 
-# In[10]:
+# In[5]:
 
 
 file_types = ['somatic','cnv', 'cnv_gene', 'purity','neoepitope','driver','sv','linx','isofox']

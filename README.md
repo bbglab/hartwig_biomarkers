@@ -1,7 +1,8 @@
 # Hartwig Biomarkers
 
 ## Goal of Repository
-* Clean and organize the Hartwig data request files into a single dataframe. 
+* Clean and organize the Hartwig Medical Foundation data request files into a single dataframe. 
+* See Hartwig Medical Foundation: https://www.hartwigmedicalfoundation.nl/en/
 
 ## Organization
 [Overview](overview.pdf)
@@ -11,7 +12,7 @@
 ## Prerequisites to Run
 
 ### Hartwig Data Request Approval
-* Harwtig data request: https://www.hartwigmedicalfoundation.nl/en/data/data-access-request/ 
+* Data request: https://www.hartwigmedicalfoundation.nl/en/data/data-access-request/ 
 * PURPLE, ISOFOX, and clinical data output. 
 
 ### Source and reference data 

@@ -11,12 +11,14 @@ tncs <- read.csv( paste0( SIGS_DIR,"tncs.csv"),check.names=FALSE, stringsAsFacto
 tmb <- data.frame( "sampleId" = tncs$sampleId, "sbs_tmb" = apply( tncs %>% select(-sampleId),1,sum))
 
 sigs <- data.frame(); j <- 0
+system.time(
 for (i in (tncs %>% pull(sampleId))){
-    print(paste0( j, " - ", i)); j <- j+1
+    print(paste0( j )); j <- j+1
     flush.console()
     sigs_i <- get_sigs(tncs, i)
     sigs <- rbind(sigs, sigs_i)
 }
+)
 
 sigs_tmb <- get_sigs_tmb( sigs, tmb )
 sig_tmb_join <- inner_join(sigs, sigs_tmb, by = "sampleId")

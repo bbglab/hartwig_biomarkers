@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[1]:
 
 
 import sys
@@ -18,18 +18,18 @@ from multiprocessing import Pool
 warnings.filterwarnings('ignore')
 
 
-# #### 0 - Get file paths 
+# ### 0 - Get file paths 
 
-# In[5]:
+# In[2]:
 
 
 with open( FPS_DIR + "somatic_files.txt", "rb") as fp:
     somatic_files = pickle.load(fp)  
 
 
-# #### 1 - Run it
+# ### 1 - Run it
 
-# In[7]:
+# In[3]:
 
 
 def somatic_file_task(i_file: str):
@@ -40,7 +40,7 @@ def somatic_file_task(i_file: str):
         print("Missing! " + i_file)
 
 
-# In[8]:
+# In[7]:
 
 
 p = Pool()
@@ -49,7 +49,7 @@ p.close()
 p.join()
 
 
-# #### 2 - Output
+# ### 2 - Output
 
 # In[ ]:
 

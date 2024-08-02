@@ -1,3 +1,5 @@
+options(repr.matrix.max.cols=100, repr.matrix.max.rows=100)
+
 wd <- dirname(getwd())
 source(paste0(wd,"/mission_control/treasure_map.R"))
 source(paste0(wd,"/mission_control/clinical_help.R"))
@@ -5,34 +7,17 @@ source(paste0(wd,"/mission_control/clinical_help.R"))
 library(dplyr)
 library(tidyr)
 
-clinical <- read.csv(paste0( TMP_DIR,'clinical_short.csv'), header=TRUE, sep = ",", stringsAsFactors=FALSE)
+clinical <- read.csv(paste0( TMP_DIR, 'clinical_short.csv'), header=TRUE, sep = ",", stringsAsFactors=FALSE)
 
-cpi <- (
-    clinical 
-        %>% filter(clinical_post_contains_Immunotherapy == "True")
-        %>% group_by(patientIdentifier) 
-        %>% mutate(ct = n(), sample_order = rank(sampleId)) 
-        %>% ungroup()
-        %>% arrange(patientIdentifier)
-)  
-non_dup <- cpi %>% filter( ct == 1) %>% select(-ct, -sample_order)
-keep_samples <- c("CPCT02010503TII", "CPCT02020670T", "CPCT02020958TII", "CPCT02050073TII", "CPCT02050276TII", "CPCT02080266T")
-dup <- cpi %>% filter(sampleId %in% keep_samples) %>% select(-ct, -sample_order)
-cpis <- rbind(non_dup, dup)
+clinical <- 
+clinical %>% 
+  group_by(patientIdentifier) %>% 
+  mutate(rk = row_number(desc(clinical_meta_tumorPurity)) ) %>% 
+  filter(rk == 1) %>%  
+  select(-rk)
 
-non_cpis <- (
-    clinical 
-        %>% filter(clinical_post_contains_Immunotherapy != "True", 
-                   !(patientIdentifier %in% cpi$patientIdentifier))
-        %>% group_by(patientIdentifier) 
-        %>% mutate(sample_order = rank(desc(sampleId)) )
-        %>% ungroup()
-        %>% filter(sample_order == 1)
-        %>% select(-sample_order))
-
-clinical <- rbind(cpis,non_cpis)
-
-clinical$clinical_number_pretreatment <- unlist(lapply(clinical$ID_pre_name, function(i) length(strsplit(i, "/")[[1]])))
+clinical$clinical_number_pretreatment <- 
+  unlist(lapply(clinical$ID_pre_name, function(i) length(strsplit(i, "/")[[1]])))
 
 trt_mechanisms <- unique(unlist(lapply(clinical$ID_post_mechanism, function(i) strsplit(i, "/")[[1]])))
                                        
@@ -49,15 +34,14 @@ for( i in sizes$trt_mechanism ){
     clinical[,field_name] <- ifelse( grepl(i, clinical$ID_post_mechanism), 1, 0)
 }                                        
 
-subtypes <- (
-    clinical 
-        %>% filter(clinical_meta_primaryTumorLocation %in% c("Breast", "Lung")) 
-        %>% group_by(ID_meta_primaryTumorSubType) 
-        %>% summarise(ct = n()) 
-        %>% arrange(desc(ct)) 
-        %>% filter(ct > 20)
-        %>% pull(ID_meta_primaryTumorSubType)
-)
+subtypes <-
+clinical %>% 
+  filter(clinical_meta_primaryTumorLocation %in% c("Breast", "Lung")) %>% 
+  group_by(ID_meta_primaryTumorSubType) %>% 
+  summarise(ct = n()) %>% 
+  arrange(desc(ct)) %>% 
+  filter(ct > 20) %>% 
+  pull(ID_meta_primaryTumorSubType)
 
 for( i in subtypes ){
     clean_subtype <- gsub(" ", "_", gsub("[^[:alnum:] ]","_",i))
@@ -65,8 +49,6 @@ for( i in subtypes ){
     field_name <- paste0("clinical_subtype_", clean_subtype )
     clinical[,field_name] <- ifelse( grepl(i, clinical$ID_meta_primaryTumorSubType), 1, 0)
 }        
-
-#clinical %>% filter(clinical_trt_mechanism_contains_Platinum == 1) %>% group_by( clinical_meta_primaryTumorLocation ) %>% summarise(ct = n()) %>% arrange(desc(ct))
 
 clinical$clinical_tumor_location_group <- unlist(lapply(clinical$clinical_tumor_location_group, tissue))
 clinical$clinical_meta_primaryTumorLocation <- unlist(lapply(clinical$clinical_meta_primaryTumorLocation, tissue))

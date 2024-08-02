@@ -2,7 +2,6 @@
 # coding: utf-8
 
 # ### Use pre-computed HLAs to get HLA features
-# - Feature description: https://docs.google.com/spreadsheets/d/1iXfZuwswPmr6BATn9nq0wj5cTpwLvcHbSYsQF7bVVok/edit?usp=sharing
 
 # In[1]:
 
@@ -22,7 +21,7 @@ import math
 import pickle
 
 
-# #### 0 - Read in reference files
+# ### 0 - Read in reference files
 
 # In[2]:
 
@@ -33,7 +32,7 @@ supertype_dict = {hla_supertypes['hla'].tolist()[i]:
                   for i in range(hla_supertypes.shape[0])}
 
 
-# #### 1 -  Extract HLAs for each Sample
+# ### 1 -  Extract HLAs for each Sample
 
 # In[3]:
 
@@ -42,7 +41,7 @@ with open( REF_DIR + "hla_map.pkl", "rb") as f:
     hla_map = pickle.load(f)  
 
 
-# #### 2 - Add Features, supertypes
+# ### 2 - Add Features, supertypes
 
 # In[4]:
 
@@ -57,7 +56,7 @@ for sample in hla_map:
         hla_map[sample]['tumor_contains_' + j] = binary(sum([1 if i == j else 0 for i in hla_map[sample]['tumor_supertype']]))
 
 
-# #### 2 - Add features, heterozygosity
+# ### 3 - Add features, heterozygosity
 
 # In[5]:
 
@@ -78,8 +77,7 @@ with open( REF_DIR + "hla_map_processed.pkl", "wb") as fp:
     pickle.dump(hla_map, fp)
 
 
-# #### Send it! 
-# - 3,2,1
+# ### 4 - Send it! 
 
 # In[7]:
 

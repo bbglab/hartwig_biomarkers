@@ -7,12 +7,6 @@
 # In[1]:
 
 
-#pd.set_option("display.max_columns", None)
-
-
-# In[2]:
-
-
 import sys
 import os
 
@@ -22,7 +16,7 @@ from mission_control.treasure_map import I_DIR, TMP_DIR
 from mission_control.clinical_help import *
 
 
-# In[3]:
+# In[2]:
 
 
 meta = pd.read_csv( I_DIR + "metadata.tsv", sep='\t')
@@ -31,9 +25,9 @@ post = pd.read_csv( I_DIR + "post_biopsy_drugs.tsv", sep='\t')
 response = pd.read_csv( I_DIR + "treatment_responses.tsv", sep='\t')
 
 
-# #### 0 - Flatten data + Merge Data
+# ### 0 - Flatten data + Merge Data
 
-# In[4]:
+# In[3]:
 
 
 pre_flat = flatten_data(pre, ['patientIdentifier'], "/")
@@ -54,9 +48,9 @@ join2 = pd.merge( left = join1, right = response, on = ["patientIdentifier", "sa
 clinical = pd.merge( left = join2, right = pre_flat, on = ["patientIdentifier"], how = "left" )    
 
 
-# #### 1 - Add fields
+# ### 1 - Add fields
 
-# In[5]:
+# In[4]:
 
 
 def days_between(d1: str, d2: str) -> Optional[int]:
@@ -68,7 +62,7 @@ def days_between(d1: str, d2: str) -> Optional[int]:
         return None
 
 
-# In[6]:
+# In[5]:
 
 
 ### Time Fields ###
@@ -97,9 +91,10 @@ clinical['response'] = pd.Categorical(clinical['response'], ["CR", "PR", "SD", "
 clinical = clinical.drop(labels = ["meta_firstResponse","meta_responseDate","response_startDate","response_endDate","post_startDate", "post_endDate"], axis = 1)
 
 
-# #### 2 - Get 'Short'
+# ### 2 - Get 'Short'
+# - Flatten dataframe
 
-# In[7]:
+# In[6]:
 
 
 clinical_last = ( 
@@ -141,9 +136,9 @@ clinical_short = (clinical_last.merge(clinical_best, on=['patientIdentifier','sa
                                .merge(clinical_progression, on=['patientIdentifier','sampleId']))
 
 
-# #### More derived clinical endpoints
+# #### Derive more clinical endpoints
 
-# In[8]:
+# In[7]:
 
 
 clinical_short[['pfs_event']] = [ pfs_event( clinical_short['os_event'][i], clinical_short['progression'][i])
@@ -183,7 +178,7 @@ clinical_short[['Survival_at_18_months']] = [survival_at_t(
 
 # #### 3 - Tidy up and output
 
-# In[10]:
+# In[8]:
 
 
 clinical_short.columns =  [column_namer(i) for i in clinical_short.columns.tolist()]
@@ -191,7 +186,7 @@ clinical_short = sort_col_names(clinical_short)
 clinical_short = clinical_short.fillna(value=np.nan)
 
 
-# In[12]:
+# In[9]:
 
 
 clinical_short.to_csv( TMP_DIR + "clinical_short.csv", index=False)

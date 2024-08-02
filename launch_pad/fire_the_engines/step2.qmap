@@ -5,6 +5,7 @@ conda activate base
 [params]
 cores = 16
 memory = 32G
+extra = -p normal
 
 [jobs]
 python  $PWD/engine2/get-somatic.py

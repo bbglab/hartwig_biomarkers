@@ -19,8 +19,8 @@ engine_map = {
     '9_get-drivers/0_get-drivers.ipynb': 'engine2',
 
     '0_get-clinical/1_get-clinical.ipynb': 'engine3',   
-    '3_get-isofox/1_get-cibersort.ipynb': 'engine3',
-    '3_get-isofox/2_get-isofox.ipynb': 'engine3', 
+    '3_get-isofox/2_get-cibersort.ipynb': 'engine3',
+    '3_get-isofox/1_get-isofox.ipynb': 'engine3', 
     '5_get-HLA/get-lilac.ipynb': 'engine3',
     '7_get-sigs/1_get-sigs.ipynb': 'engine3',
     '8_get-summary/1_get-summary.ipynb': 'engine3',

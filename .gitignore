@@ -6,6 +6,9 @@
 # Notebook checkpoint files
 *checkpoint.ipynb
 
+# Output from launch pad
+step*/
+
 # qmap output 
 *.err
 *.info

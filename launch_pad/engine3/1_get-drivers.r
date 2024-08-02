@@ -5,19 +5,20 @@ library(tidyr)
 library(dplyr)
 
 drivers_purple <- read.csv( paste0( TMP_DIR,"drivers_DB_purple.csv"), stringsAsFactors = FALSE)
-drivers <- (drivers_purple 
-                %>% filter(driverLikelihood > .999) 
-                %>% transmute( sampleId, driver = paste0(gene,"_",driver))
-                %>% distinct())
 
-common_drivers <- (
-    drivers
-        %>% group_by(driver) 
-        %>% summarise(ct = n()) 
-        %>% arrange(desc(ct)) 
-        %>% filter(ct > 20)
-        %>% pull(driver)
-)
+drivers <- 
+drivers_purple %>% 
+  filter(driverLikelihood > .999) %>% 
+  transmute( sampleId, driver = paste0(gene,"_",driver)) %>% 
+  distinct()
+
+common_drivers <-
+drivers %>% 
+  group_by(driver) %>% 
+  summarise(ct = n()) %>% 
+  arrange(desc(ct)) %>% 
+  filter(ct > 20) %>% 
+  pull(driver)
 sampleIds <- unique(drivers %>% pull(sampleId))
 
 genes <- list()

@@ -20,7 +20,7 @@ field = sys.argv[1] #"AdjTPM or RawTPM"
 #field = "RawTPM"
 
 
-# #### 0 - Get file paths 
+# ### 0 - Get file paths 
 
 # In[2]:
 
@@ -29,7 +29,7 @@ with open( FPS_DIR + "isofox_files.txt", "rb") as fp:
     isofox_files = pickle.load(fp)
 
 
-# #### 1 - Run it
+# ### 1 - Run it
 
 # In[5]:
 
@@ -58,12 +58,11 @@ full_df = pd.concat( features ).transpose()
 reference_df = filter_to_reference_genes( full_df, REFERENCE_GENES ) 
 
 
-# #### 2 - Output
+# ### 2 - Output
 
 # In[6]:
 
 
 reference_df.to_csv( TMP_DIR + 'cibersort_prep_' + field + '.csv', index = True)
-#df_cleaner(reference_df).to_csv( TMP_DIR + 'isofox_' + field + '_features.csv', index = False)
 df_cleaner(full_df, REFERENCE_GENES).to_csv( TMP_DIR + 'isofox_' + field + '_features.csv', index = False)
 

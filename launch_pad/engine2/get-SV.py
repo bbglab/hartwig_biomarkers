@@ -15,7 +15,7 @@ import pandas as pd
 import pickle
 
 
-# #### 0 - Get file paths 
+# ### 0 - Get file paths 
 
 # In[2]:
 
@@ -24,9 +24,9 @@ with open( FPS_DIR + "linx_files.txt", "rb") as fp:
     linx_files = pickle.load(fp)  
 
 
-# #### 1 - Run it
+# ### 1 - Run it
 
-# In[5]:
+# In[ ]:
 
 
 features = []
@@ -38,9 +38,9 @@ for fp in linx_files:
     features.append(linx_dict)
 
 
-# #### 2 - Output
+# ### 2 - Output
 
-# In[4]:
+# In[ ]:
 
 
 pd.DataFrame(features).to_csv( TMP_DIR + 'sv_ready.csv', index = False)

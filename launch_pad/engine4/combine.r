@@ -33,24 +33,21 @@ cnv_gene <- cnv_gene %>% mutate_at(vars(-contains("_loh_"), -sampleId), ~(log(.+
 neoepitope <- neoepitope %>% mutate_at(vars(-sampleId), ~(log(.+1) %>% as.vector))
 sv <- sv %>% mutate_at(vars(-sampleId), ~(log(.+1) %>% as.vector))
 
-all <- (
-    clinical
-        %>% left_join(hlas, by='sampleId')
-        %>% left_join(cibersort_lm22, by='sampleId')
-        %>% left_join(cibersort_tr4, by='sampleId')
-        %>% left_join(cnv, by='sampleId')
-        %>% left_join(cnv_gene, by='sampleId')
-        %>% left_join(drivers, by='sampleId')
-        %>% left_join(isofox, by='sampleId')
-        %>% left_join(neoepitope, by='sampleId')
-        %>% left_join(sigs, by='sampleId')
-        %>% left_join(somatic, by='sampleId')
-        %>% left_join(summary, by='sampleId') 
-        %>% left_join(sv, by='sampleId')   
-        %>% left_join(lilac, by='ID_meta_hmfSampleId')
-    )
-
-#all %>% select(contains("cluster"))
+all <- 
+clinical %>% 
+  left_join(hlas, by='sampleId') %>% 
+  left_join(cibersort_lm22, by='sampleId') %>% 
+  left_join(cibersort_tr4, by='sampleId') %>% 
+  left_join(cnv, by='sampleId') %>% 
+  left_join(cnv_gene, by='sampleId') %>% 
+  left_join(drivers, by='sampleId') %>% 
+  left_join(isofox, by='sampleId') %>% 
+  left_join(neoepitope, by='sampleId') %>% 
+  left_join(sigs, by='sampleId') %>% 
+  left_join(somatic, by='sampleId') %>% 
+  left_join(summary, by='sampleId') %>% 
+  left_join(sv, by='sampleId') %>% 
+  left_join(lilac, by='ID_meta_hmfSampleId')
 
 #all <- 
 #    (all 

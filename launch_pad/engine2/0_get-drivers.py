@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[1]:
 
 
 import sys
@@ -16,7 +16,9 @@ import pandas as pd
 import pickle
 
 
-# In[4]:
+# ### 0 - Read in Linx and Driver files
+
+# In[2]:
 
 
 with open( FPS_DIR + "linx_files.txt", "rb") as fp:
@@ -26,13 +28,9 @@ with open( FPS_DIR + "driver_files.txt", "rb") as fp:
     driver_files = pickle.load(fp)      
 
 
-# In[5]:
+# ### 1 - Bring together in one dataframe
 
-
-driver_files[0]
-
-
-# In[ ]:
+# In[3]:
 
 
 driver_dfs_linx = []
@@ -44,7 +42,9 @@ for i in driver_files:
     driver_dfs_purple.append(create_driver_df2(i))       
 
 
-# In[7]:
+# ### 2 - Send them
+
+# In[4]:
 
 
 pd.concat( driver_dfs_linx ).to_csv( TMP_DIR + 'drivers_DB_linx.csv', index = False)
